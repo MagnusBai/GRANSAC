@@ -19,7 +19,7 @@ Optionally, to build the line fiting example, *OpenCV* and *CMake* are required.
 Just include the header GRANSAC.hpp in your application. The AbstractModel class
 needs to be inherited to implement a suitable model for your application.
 
-## Example: Line Fitting
+## Sample0 by Srinath Sridhar: Line Fitting
 
 To demonstrate how to use the library a line fitting example is included.
 To build this example do the following:
@@ -38,6 +38,12 @@ the diagonal. Green points show inliers.
 
 ![RANSAC line fitting example](https://raw.githubusercontent.com/srinath1905/GRANSAC/master/examples/LineFitting.png)
 
+## Sample1 by Magnus Bai: Line Fitting
+
+
+## Sample2 by Magnus Bai: Source Point Estimation
+
+
 ## License
 
 GRANSAC is released under an [MIT License](https://opensource.org/licenses/MIT).
@@ -46,3 +52,5 @@ GRANSAC is released under an [MIT License](https://opensource.org/licenses/MIT).
 
 Srinath Sridhar (srinaths@umich.edu)
 Max Planck Institute for Informatics
+
+Magnus Bai (opencv3@163.com)
