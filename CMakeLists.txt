@@ -1,6 +1,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
-PROJECT(LineFittingSample)
+PROJECT(GRANSAC_SAMPLES)
+
+MESSAGE("## project name: " ${PROJECT_NAME})
 
 IF(MSVC)
   ADD_DEFINITIONS(-DNOMINMAX)
@@ -23,10 +25,25 @@ IF(OPENMP_FOUND)
   MESSAGE(STATUS "Found OpenMP")
 ENDIF()
 
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../include ${OpenCV_INCLUDE_DIRS})
+MESSAGE("## cmake source dir: " ${CMAKE_SOURCE_DIR})
 
-SET(CPP_FILES LineFittingSample.cpp)
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include ${OpenCV_INCLUDE_DIRS})
+
+
 SET(VC_LIBS ${OpenCV_LIBS})
-	
-ADD_EXECUTABLE(${PROJECT_NAME} ${CPP_FILES} ${HPP_FILES})
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${VC_LIBS})
+
+
+# -- locations of test_sample files --
+SET(CPP_SAMPLE_0 examples/sample0_line_fitting.cpp)
+SET(CPP_SAMPLE_1 examples/sample1_lines_fitting.cpp)
+
+# -- names of executables --
+SET(EXE_SAMPLE_0 sample_0_fitting_line)
+SET(EXE_SAMPLE_1 sample_1_fitting_lines)
+
+
+ADD_EXECUTABLE(${EXE_SAMPLE_0} ${CPP_SAMPLE_0} ${HPP_FILES})
+TARGET_LINK_LIBRARIES(${EXE_SAMPLE_0} ${VC_LIBS})
+
+ADD_EXECUTABLE(${EXE_SAMPLE_1} ${CPP_SAMPLE_1} ${HPP_FILES})
+TARGET_LINK_LIBRARIES(${EXE_SAMPLE_1} ${VC_LIBS})

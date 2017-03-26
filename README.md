@@ -28,9 +28,9 @@ To build this example do the following:
 $ pwd
 <SOME_DIR>/GRANSAC
 $ mkdir build && cd build
-$ cmake ../examples/
+$ cmake ../
 $ make
-$ ./LineFittingSample 1000 500
+$ ./sample_0_fitting_lines [1000 500]
 ```
 
 Running LineFittingSample should display a window with random 2D points around
