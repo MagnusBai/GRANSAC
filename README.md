@@ -16,32 +16,35 @@ Optionally, to build the line fiting example, *OpenCV* and *CMake* are required.
 
 ## Usage
 
+### building your own RANSAC application
+
 Just include the header GRANSAC.hpp in your application. The AbstractModel class
 needs to be inherited to implement a suitable model for your application.
 
-## Sample0 by Srinath Sridhar: Line Fitting
+### using our samples
 
-To demonstrate how to use the library a line fitting example is included.
-To build this example do the following:
+the following commands will create binary of samples:
 
-```bash
-$ pwd
-<SOME_DIR>/GRANSAC
-$ mkdir build && cd build
-$ cmake ../
-$ make
-$ ./sample_0_fitting_lines [1000 500]
+```
+cd $(GRANSAC_HOME)
+mkdir build && cd build
+cmake ..
+make
 ```
 
-Running LineFittingSample should display a window with random 2D points around
-the diagonal. Green points show inliers.
+## Sample0: Line Fitting
 
-![RANSAC line fitting example](https://raw.githubusercontent.com/srinath1905/GRANSAC/master/examples/LineFitting.png)
-
-## Sample1 by Magnus Bai: Line Fitting
+Running **sample_0_fitting_line** should generate random 2D points around the diagonal and get the line which would fit the distribution best through RANSAC algorithm.
 
 
-## Sample2 by Magnus Bai: Source Point Estimation
+## Sample1 : Line Fitting
+
+Running **sample_1_fitting_lines** should load the contour of pre-processed sentences segmentation and get the line which would fit the distribution best through RANSAC algorithm.
+
+
+## Sample2 : Vanishing Point Estimation
+
+Running **sample_2_vanishing_point** should load some lines and get the vanishing point of them (the most probable intersection point of these lines, as much as better) RANSAC algorithm.
 
 
 ## License
@@ -54,3 +57,4 @@ Srinath Sridhar (srinaths@umich.edu)
 Max Planck Institute for Informatics
 
 Magnus Bai (opencv3@163.com)
+CASIA
