@@ -6,21 +6,7 @@
 
 #include "GRANSAC.hpp"
 #include "LineModel.hpp"
-
-GRANSAC::VPFloat Slope(int x0, int y0, int x1, int y1) {
-  return (GRANSAC::VPFloat) (y1 - y0) / (x1 - x0);
-}
-
-void DrawFullLine(cv::Mat& img, cv::Point a, cv::Point b, cv::Scalar color, int LineWidth) {
-  GRANSAC::VPFloat slope = Slope(a.x, a.y, b.x, b.y);
-
-  cv::Point p(0, 0), q(img.cols, img.rows);
-
-  p.y = -(a.x - p.x) * slope + a.y;
-  q.y = -(b.x - q.x) * slope + b.y;
-
-  cv::line(img, p, q, color, LineWidth, 8, 0);
-}
+#include "common_function.hpp"
 
 int main(int argc, char * argv[]) {
 
@@ -42,7 +28,7 @@ int main(int argc, char * argv[]) {
 
   // |-> Generate 2D points waiting for Line-fitting task, amount of which is nPoints
   cv::Mat Canvas(Side, Side, CV_8UC3);
-  Canvas.setTo(255);
+  Canvas.setTo( solarized_palette["base3"] );
 
   // Randomly generate points in a 2D plane roughly aligned in a line for testing
   std::random_device SeedDevice;
@@ -56,7 +42,7 @@ int main(int argc, char * argv[]) {
   for (int i = 0; i < nPoints; ++i) {
     int Diag = UniDist(RNG);
     cv::Point Pt(floor(Diag + PerturbDist(RNG)), floor(Diag + PerturbDist(RNG)));
-    cv::circle(Canvas, Pt, floor(Side / 100), cv::Scalar(0, 0, 0), -1);
+    cv::circle(Canvas, Pt, floor(Side / 100), solarized_palette["cyan"], -1);
 
     std::shared_ptr<GRANSAC::AbstractParameter> CandPt = std::make_shared < Point2D > (Pt.x, Pt.y);
     CandPoints.push_back(CandPt);
@@ -84,7 +70,7 @@ int main(int argc, char * argv[]) {
     for (auto& Inlier : BestInliers) {
       auto RPt = std::dynamic_pointer_cast < Point2D > (Inlier);
       cv::Point Pt(floor(RPt->m_Point2D[0]), floor(RPt->m_Point2D[1]));
-      cv::circle(Canvas, Pt, floor(Side / 100), cv::Scalar(0, 255, 0), -1);
+      cv::circle(Canvas, Pt, floor(Side / 100), solarized_palette["violet"], -1);
     }
   }
   // <-| Show inliers
@@ -97,20 +83,13 @@ int main(int argc, char * argv[]) {
     if (BestLinePt1 && BestLinePt2) {
       cv::Point Pt1(BestLinePt1->m_Point2D[0], BestLinePt1->m_Point2D[1]);
       cv::Point Pt2(BestLinePt2->m_Point2D[0], BestLinePt2->m_Point2D[1]);
-      DrawFullLine(Canvas, Pt1, Pt2, cv::Scalar(0, 0, 255), 2);
+      DrawFullLine(Canvas, Pt1, Pt2, solarized_palette["magenta"], 2);
     }
   }
   // <-| extract best model from Inliers
 
-  while (true) {
-    cv::imshow("RANSAC Example", Canvas);
 
-    char Key = cv::waitKey(1);
-    if (Key == 27)
-      return 0;
-    if (Key == ' ')
-      cv::imwrite("sample0_LineFitting.png", Canvas);
-  }
+  cv::imwrite("sample0_LineFitting.png", Canvas);
 
   return 0;
 }

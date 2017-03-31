@@ -36,14 +36,18 @@ SET(VC_LIBS ${OpenCV_LIBS})
 # -- locations of test_sample files --
 SET(CPP_SAMPLE_0 examples/sample0_line_fitting.cpp)
 SET(CPP_SAMPLE_1 examples/sample1_lines_fitting.cpp)
+SET(CPP_SAMPLE_2 examples/sample2_vanishing_point.cpp)
 
 # -- names of executables --
 SET(EXE_SAMPLE_0 sample_0_fitting_line)
 SET(EXE_SAMPLE_1 sample_1_fitting_lines)
-
+SET(EXE_SAMPLE_2 sample_2_vanishing_point)
 
 ADD_EXECUTABLE(${EXE_SAMPLE_0} ${CPP_SAMPLE_0} ${HPP_FILES})
 TARGET_LINK_LIBRARIES(${EXE_SAMPLE_0} ${VC_LIBS})
 
 ADD_EXECUTABLE(${EXE_SAMPLE_1} ${CPP_SAMPLE_1} ${HPP_FILES})
 TARGET_LINK_LIBRARIES(${EXE_SAMPLE_1} ${VC_LIBS})
+
+ADD_EXECUTABLE(${EXE_SAMPLE_2} ${CPP_SAMPLE_2} ${HPP_FILES})
+TARGET_LINK_LIBRARIES(${EXE_SAMPLE_2} ${VC_LIBS})
