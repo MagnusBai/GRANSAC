@@ -44,7 +44,7 @@ Running **sample_1_fitting_lines** should load the contour of pre-processed sent
 
 ## Sample2 : Vanishing Point Estimation
 
-Running **sample_2_vanishing_point** should load some lines and get the vanishing point of them (the most probable intersection point of these lines, as much as better) RANSAC algorithm.
+Running **sample_2_vanishing_point** should load some lines and get the vanishing point of them (the most probable intersection point of these lines, as much as better) through RANSAC algorithm.
 
 
 ## License
