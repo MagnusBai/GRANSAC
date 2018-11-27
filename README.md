@@ -60,6 +60,3 @@ GRANSAC is released under an [MIT License](https://opensource.org/licenses/MIT).
 
 Srinath Sridhar (srinaths@umich.edu)
 Max Planck Institute for Informatics
-
-Magnus Bai (opencv3@163.com)
-CASIA
